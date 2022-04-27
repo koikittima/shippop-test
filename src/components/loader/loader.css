@@ -1,0 +1,14 @@
+#modal_loading {
+  z-index: 1600 !important;
+}
+#modal_loading .modal-body {
+  border: none !important;
+  background-color: transparent !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+#modal_loading .modal-content {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none;
+}
