@@ -109,7 +109,7 @@ const Header = (props) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <div className='position-absolute px-1 -left-9 z-10 mt-2 w-80 rounded-lg shadow-lg py-1 bg-white left-1 left-black left-opacity-5 focus:outline-none'>
+                    <div className='position-absolute px-1  mt-2 w-80 rounded-lg shadow-lg py-1 bg-white left-basket'>
                         {renderBasketSub(dataAmount)}
                     </div>
 
