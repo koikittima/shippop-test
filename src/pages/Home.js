@@ -10,63 +10,8 @@ function Home() {
     const dispatch = useDispatch();
     const [data, setDdata] = useState(false);
 
-    const dataStock = [
-        {
-            id: 1,
-            stock_have: "มีสินค้า",
-            logo: '/svg/logo.svg',
-            nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-            price_discount: "THB599.00",
-            normal_price: "THB499.00",
-            hover: false,
-            review: 4
-        },
-        {
-            id: 2,
-            stock_have: "มีสินค้า",
-            logo: '/svg/logo.svg',
-            nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-            price_discount: "THB599.00",
-            normal_price: "THB499.00",
-            hover: false,
-            review: 4
-        },
-        {
-            id: 3,
-            stock_have: "มีสินค้า",
-            logo: '/svg/logo.svg',
-            nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-            price_discount: "THB599.00",
-            normal_price: "THB499.00",
-            hover: false,
-            review: 4
-        },
-        {
-            id: 4,
-            stock_have: "มีสินค้า",
-            logo: '/svg/logo.svg',
-            nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-            price_discount: "THB599.00",
-            normal_price: "THB499.00",
-            hover: false,
-            review: 4
-        },
-        {
-            id: 5,
-            stock_have: "มีสินค้า",
-            logo: '/svg/logo.svg',
-            nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-            price_discount: "THB599.00",
-            normal_price: "THB499.00",
-            hover: false,
-            review: 4
-        },
-
-    ]
-    const [listStock, setListStock] = useState(dataStock)
-
     return (
-        <div className="bg-gray-light">
+        <div className="">
             <section className=" py-5 fixed-footer">
                 <section>
                     <Container >
@@ -84,7 +29,7 @@ function Home() {
                             </span>
                         </div>
                         <div className='mt-2'>
-                            <SlideStock listStock={listStock} />
+                            <SlideStock />
                         </div>
                     </Container>
 
@@ -101,7 +46,7 @@ function Home() {
                             </span>
                         </div>
                         <div className='mt-2'>
-                            <SlideStock listStock={listStock} />
+                            <SlideStock  />
                         </div>
                     </Container>
 

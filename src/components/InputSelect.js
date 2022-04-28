@@ -59,11 +59,11 @@ function InputSelect({ title, star, classLabel, placeholder, idName, selectValue
 
             <style jsx="true" global="true">{`
                 .css-107lb6w-singleValue {
-                    color: #495057 !important;
+                    color: #495057;
 
                 }     
                 .css-cixz0v-placeholder {
-                    font-size: 14px !important;
+                    font-size: 14px;
                 }
             `}</style>
         </Form.Group>

@@ -105,62 +105,6 @@ function ProductDetails(props) {
     },
 
   ]
-
-  const dataStock = [
-    {
-      id: 1,
-      stock_have: "มีสินค้า",
-      logo: '/svg/logo.svg',
-      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-      price_discount: "THB599.00",
-      normal_price: "THB499.00",
-      hover: false,
-      review: 4
-    },
-    {
-      id: 2,
-      stock_have: "มีสินค้า",
-      logo: '/svg/logo.svg',
-      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-      price_discount: "THB599.00",
-      normal_price: "THB499.00",
-      hover: false,
-      review: 4
-    },
-    {
-      id: 3,
-      stock_have: "มีสินค้า",
-      logo: '/svg/logo.svg',
-      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-      price_discount: "THB599.00",
-      normal_price: "THB499.00",
-      hover: false,
-      review: 4
-    },
-    {
-      id: 4,
-      stock_have: "มีสินค้า",
-      logo: '/svg/logo.svg',
-      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-      price_discount: "THB599.00",
-      normal_price: "THB499.00",
-      hover: false,
-      review: 4
-    },
-    {
-      id: 5,
-      stock_have: "มีสินค้า",
-      logo: '/svg/logo.svg',
-      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
-      price_discount: "THB599.00",
-      normal_price: "THB499.00",
-      hover: false,
-      review: 4
-    },
-
-  ]
-  const [listStock, setListStock] = useState(dataStock)
-
   const [data, setData] = useState({})
 
   useEffect(() => {
@@ -181,7 +125,7 @@ function ProductDetails(props) {
   console.log("data", data);
 
   return (
-    <div className="bg-gray-light ">
+    <div className="">
       <section className="py-5 fixed-footer border-bottom">
         <Container >
           <Row>
@@ -211,7 +155,8 @@ function ProductDetails(props) {
                 <span className="text-normal-price font26 mr-2">{data.normal_price}</span>
                 <span className="text-discount font18 ">{data.price_discount}</span>
               </div>
-              <div className="mt-4 ">
+              <div className="mt-4 d-flex ">
+                <input type="number" id="quantity" name="quantity" min="0" className="mr-2" />
                 <Button bg="#0156FF" color="#FFFFFF" border_radius="50px" className="mr-2" width="209px" height="50px">
                   <span className="font14">Add</span>
                 </Button>
@@ -257,11 +202,29 @@ function ProductDetails(props) {
             </span>
           </div>
           <div className='mt-2'>
-            <SlideStock listStock={listStock} />
+            <SlideStock  />
           </div>
         </Container>
       </section>
+      <style jsx="true" global="true">{`
+                button, input, optgroup, select, textarea {
+                width: 122px;
+                height: 50px;
+                background: #EBEBEB;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #000000;
+                border : 1px solid transparent;
+          }     
 
+          input[type=number]::-webkit-inner-spin-button,
+          input[type=number]::-webkit-outer-spin-button {
+              opacity: 1;
+          } 
+
+            `}</style>
     </div>
 
 

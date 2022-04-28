@@ -7,7 +7,6 @@ export const Button = styled.button`
     display: inline-block;
     justify: center;
     font-weight: 600;
-    font-family: 'Poppins';
     text-align: center;
     vertical-align: middle;
     ${({ type }) => `${type == "none" ? "cursor: default" : "cursor: pointer"}`};
@@ -41,34 +40,16 @@ export const Button = styled.button`
 
 `
 
-export const BoxRight = styled.div`
-    background: #FFF;
-    border: 1px solid #E2E2EA;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    color: #696974;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    height: 33px;
-    width: ${({ width }) => width || "38px"};
-    cursor: pointer;
-
-    &:hover {
-        ${({ hover_bg, bg, disabled, border }) => `background: ${(border && disabled) ? "#FFF" : disabled ? "#D5D5DC" : hover_bg ? hover_bg : bg};`}
-        border: 1px solid #E2E2EA;
-        ${({ shadow }) => `box-shadow: ${shadow ? "0px 2px 2px rgba(97, 97, 97, 0.14), 0px 2px 2px rgba(97, 97, 97, 0.16)" : ""}`};
-    }
-    &:focus {
-        box-shadow: 0 0 0 0.1rem ${({ bg }) => bg || "#fff"};
-        ${({ shadow }) => `box-shadow: ${shadow ? "0px 2px 2px rgba(97, 97, 97, 0.14), 0px 2px 2px rgba(97, 97, 97, 0.16)" : ""}`};
-        border: 1px solid #E2E2EA;
-        ${({ focus_bg, bg }) => `background: ${focus_bg ? focus_bg : bg}`};
-    }
-`
-
 export const Box = styled.div`
     width: 362px;
     height: 377px;
     background: #F5F9FF;
+`
+
+export const BoxPayMent = styled.div`
+    width: 100%;
+    background: #FFFFFF;
+    ${({ border }) => `border: ${border ? border : "1px solid transparent"}`};
+    box-sizing: border-box;
+    border-radius: 7px;
 `

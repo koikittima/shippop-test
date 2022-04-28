@@ -28,11 +28,11 @@ function InputText({
 
       <style jsx="true" global="true">{`
             .form-control {
-                border-radius: 1rem !important;
+                border-radius: 1rem ;
             }
 
             .form-control:focus {
-                border-radius: 1rem !important;
+                border-radius: 1rem ;
             }
                
             `}</style>

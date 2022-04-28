@@ -10,6 +10,14 @@ code {
     monospace;
 }
 
+.bold {
+  font-weight: bold !important;
+}
+
+.normal {
+  font-weight: normal !important;
+}
+
 .border{
   border: 1px solid #CCCCCC;
 }
@@ -51,7 +59,7 @@ code {
 }
 
 .text-book{
-  font-family: 'SF Thonburi';
+  /* font-family: 'SF Thonburi'; */
   font-style: normal;
   font-size: 36px;
   font-weight: bold !important;
@@ -70,11 +78,11 @@ code {
   font-weight: 500;
   font-size: 10px;
   color: #78A962;
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
 }
 
 .text-review{
-  font-family: 'SF Thonburi';
+  /* font-family: 'SF Thonburi'; */
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -82,14 +90,27 @@ code {
 }
 
 .text-detail{
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
   font-style: normal;
   font-weight: 400;
   color: #000000;
 }
 
+.search-input {
+  background-color: #FFF;
+  color: #000 ;
+  border: 1px solid #005B9F;
+  border-radius: 36px !important;
+}
+
+.bd-group{
+  border-radius: 3px;
+  padding-right: 10px;
+}
+
+
 .text-namebook {
-  font-family: 'Sukhumvit Set';
+  /* font-family: 'Sukhumvit Set'; */
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -97,7 +118,7 @@ code {
 }
 
 .text-discount{
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
   font-style: normal;
   font-weight: 600;
   color: #828282;
@@ -108,21 +129,21 @@ code {
 }
 
 .text-gray-70{
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
   font-style: normal;
   font-weight: 400;
   color: #666666;
 }
 
 .text-gray-100{
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
   font-style: normal;
   font-weight: 600;
   color: #666666;
 }
 
 .text-normal-price{
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
   font-style: normal;
   font-weight: 600;
   color: #000000;
@@ -130,7 +151,7 @@ code {
 }
 
 .text-line{
-font-family: 'Sukhumvit Set';
+/* font-family: 'Sukhumvit Set'; */
 font-style: normal;
 font-weight: 500;
 display: flex;
@@ -332,7 +353,7 @@ text-decoration-line: underline;
   display: none;
   font-size: 35px;
   color: #000000 !important;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
   text-align: center;
   margin: auto;
   position: absolute;
@@ -343,6 +364,12 @@ text-decoration-line: underline;
   height: 50px;
   cursor: pointer;
   /*text-decoration: none;*/
+}
+
+.w-h-search{
+  width: 917px;
+  height: 60px;
+
 }
 
 .parent:hover .child, .parent:focus .child {
@@ -411,56 +438,6 @@ text-decoration-line: underline;
   background-size: 10px 10px;
 }
 
-
- /* .carousel-control-prev-icon:after {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: no-repeat 50%/100% 100%;
-} */
-/* 
-.carousel-control-prev-icon:before {
-  display: inline-block;
-  background: #252931 ;
-  opacity: 0.5;
-  border-radius: 30px 0px 0px 30px;
-} */
-
-
-/* .carousel-control-prev-icon,
-.carousel-control-next-icon {
-  display: inline-block;
-  width: 30.8px;
-  height: 48px;
-  background: #252931;
-  border-radius:  30px 0px 0px 30px;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon:after
-{
-  content: '>';
-  width: 30.8px;
-  height: 48px;
-  font-size: 30px;
-  background: #252931;
-  opacity: 0.5;
-  border-radius:  30px 0px 0px 30px;
-  transform: rotate(-180deg);
-  color: #fff;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-prev-icon:after {
-  content: '>';
-  width: 30.8px;
-  height: 48px;
-  font-size: 30px;
-  background: #252931 ;
-  opacity: 0.5;
-  border-radius: 30px 0px 0px 30px;
-  color: #fff;
-} */
 
 @media (min-width: 320px) {
   .carousel-caption {

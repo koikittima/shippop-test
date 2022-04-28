@@ -1,132 +1,9 @@
-// import React, { useEffect } from "react"
-// import { useKeenSlider } from "keen-slider/react"
-// import styled from 'styled-components'
-// import ArrowLeft from './arrowLeft'
-// import ArrowRight from './arrowRight'
-
-// import "keen-slider/keen-slider.min.css"
-
-// const Text = styled.h3`
-//     font-weight: 500;
-//     font-size: 3vmin;
-//     color: #FFFFFF;
-//     white-space: nowrap;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-// `
-
-// const SystemRelateCard = styled.div`
-//     background: ${props => `url(${props.src || '/svg/logo.svg'}), url('/svg/logo.svg')`} ;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-// `
-
-// export default () => {
-
-//   const [currentSlide, setCurrentSlide] = React.useState(0)
-
-//   const [sliderRef, slider] = useKeenSlider({
-//     slidesPerView: 4,
-//     loop: true,
-//     spacing: 30,
-//     initial: 0,
-//     slideChanged(s) {
-//       setCurrentSlide(s.details().relativeSlide)
-//     },
-//   })
-
-//   const gotoSystemRelate = (url) => {
-//     // let urlSystem = url
-//     // if (url.search("www.") >= 0) {
-//     //   let updatedURL = url.replace('www.', '');
-//     //   urlSystem = updatedURL
-//     // }
-//     // console.log('urlSystem :>> ', urlSystem);
-//     window.open(url, '_blank').focus();
-//   }
-
-//   return (
-//     <>
-//       <div className="navigation-wrapper">
-//         <div ref={sliderRef} className="keen-slider">
-//           {/* {listSystemRelate.length ? listSystemRelate.map((item, index) => {
-//             return <SystemRelateCard src={item.url} className={`keen-slider__slide number-slide cursor-p`} key={item.id} onClick={() => gotoSystemRelate(item.link)}>
-//               <Text> {item.name}</Text>
-//             </SystemRelateCard>
-//           }) : ''} */}
-
-//            <SystemRelateCard  src={"/svg/imgtest.svg"}  className={`keen-slider__slide number-slide cursor-p`} >
-//               <Text> aaaaaaaaa</Text>
-//             </SystemRelateCard>
-//         </div>
-//         {slider && (
-//           <>
-//             <ArrowLeft
-//               onClick={(e) => e.stopPropagation() || slider.prev()}
-//               disabled={currentSlide === 0}
-//             />
-//             <ArrowRight
-//               onClick={(e) => e.stopPropagation() || slider.next()}
-//               disabled={currentSlide === slider.details().size - 1}
-//             />
-//           </>
-//         )}
-//       </div>
-//       {slider && (
-//         <div className="dots">
-//           {[...Array(slider.details().size).keys()].map((idx) => {
-//             return (
-//               <button
-//                 key={idx}
-//                 onClick={() => {
-//                   slider.moveToSlideRelative(idx)
-//                 }}
-//                 className={"dot" + (currentSlide === idx ? " active" : "")}
-//               />
-//             )
-//           })}
-//         </div>
-//       )}
-//     </>
-//   )
-// }
-
-// function ArrowLeft(props) {
-//   const disabeld = props.disabled ? " arrow--disabled" : ""
-//   return (
-//     <svg
-//       onClick={props.onClick}
-//       className={"arrow arrow--left" + disabeld}
-//       xmlns="http://www.w3.org/2000/svg"
-//       viewBox="0 0 24 24"
-//     >
-//       <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-//     </svg>
-//   )
-// }
-
-// function ArrowRight(props) {
-//   const disabeld = props.disabled ? " arrow--disabled" : ""
-//   return (
-//     <svg
-//       onClick={props.onClick}
-//       className={"arrow arrow--right" + disabeld}
-//       xmlns="http://www.w3.org/2000/svg"
-//       viewBox="0 0 24 24"
-//     >
-//       <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-//     </svg>
-//   )
-// }
-
-
-import React, { useEffect } from "react"
-import { useKeenSlider } from "keen-slider/react"
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
 import "keen-slider/keen-slider.min.css"
-import { Carousel, Container, Row, Col, Button } from 'react-bootstrap';
+import { Carousel, Row, Col } from 'react-bootstrap';
+import { Button } from './style/globalStyles';
 
 
 const Text = styled.h3`
@@ -138,8 +15,8 @@ const Text = styled.h3`
 `
 
 const SystemRelateCard = styled.div`
-    width: 234.16px;
-    height: 301px;
+    ${({ width }) => `width: ${width}`};
+    ${({ height }) => `height: ${height}`};
     left: -0.08px;
     top: 0px;
     background: #FFFFFF;
@@ -158,81 +35,115 @@ const SystemRelateCard = styled.div`
   }
     
 `
-
-const SystemRelateCard2 = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px 25px;
-
-    position: absolute;
-    width: 234.73px;
-    height: 355px;
-    left: -0.5px;
-    top: 0px;
-
-    background: #FFFFFF;
-    
-`
 // background: ${props => `url(${props.src || '/svg/logo.svg'}), url('/svg/logo.svg')`} ;
 
-function SlideStock({ listStock }) {
+function SlideStock() {
   const history = useHistory();
 
+  const [listFolder, setListFolder] = useState([])
 
-  const renderListImgMoodTone = () => {
-    if (listStock && listStock.length > 0) {
-      return listStock.map((item, i) => {
-        return (
-          <div key={i}>
-            <div
-              onMouseEnter={() => {
-                item.hover = true
+  const dataStock = [
+    {
+      id: 1,
+      stock_have: "มีสินค้า",
+      logo: '/svg/logo.svg',
+      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
+      price_discount: "THB599.00",
+      normal_price: "THB499.00",
+      hover: false,
+      review: 4
+    },
+    {
+      id: 2,
+      stock_have: "มีสินค้า",
+      logo: '/svg/logo.svg',
+      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
+      price_discount: "THB599.00",
+      normal_price: "THB499.00",
+      hover: false,
+      review: 4
+    },
+    {
+      id: 3,
+      stock_have: "มีสินค้า",
+      logo: '/svg/logo.svg',
+      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
+      price_discount: "THB599.00",
+      normal_price: "THB499.00",
+      hover: false,
+      review: 4
+    },
+    {
+      id: 4,
+      stock_have: "มีสินค้า",
+      logo: '/svg/logo.svg',
+      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
+      price_discount: "THB599.00",
+      normal_price: "THB499.00",
+      hover: false,
+      review: 4
+    },
+    {
+      id: 5,
+      stock_have: "มีสินค้า",
+      logo: '/svg/logo.svg',
+      nameBook: "รสชาติของผลไม้ที่ยังไม่สุกงอม",
+      price_discount: "THB599.00",
+      normal_price: "THB499.00",
+      hover: false,
+      review: 4
+    },
 
-              }}
-              onMouseLeave={() => {
-                item.hover = false
-              }}
-            >
+  ]
+  const [listStock, setListStock] = useState(dataStock)
 
-              {item.hover &&
-                <div className="imgPreviewBrief-img">
-                  <div className="img-cameraBrief">
-                    <div className="file">
-                      <img className="" src={"/svg/star-color.svg"} />
-                    </div>
-                  </div>
-                  <div className="img-cameraBrief">
-                    <div className="file">
-                      <img className="mr-2" src={"/svg/star-no.svg"} />
-                    </div>
-                  </div>
-                </div>
-              }
-            </div>
-          </div>
-
-        )
-      })
-    }
-  }
 
   const renderStock = (data) => {
     if (data.length > 0) {
-      console.log("data", data.hover);
       return data.map((item, index) => (
         <Col lg={2} md={2} sm={2} xs={2} className="d-flex justify-content-center " key={index}
-        onClick={() => history.push(`/product-detailsut/${item.id}`)}
+          onClick={() => history.push(`/product-detailsut/${item.id}`)}
         >
-          <SystemRelateCard className="cursor-p py-2 " >
-            <div className={`${index === 0 ? "ml-3" : ""} text-stock d-flex align-items-center`}>
+          <SystemRelateCard className="cursor-p py-2 " width={item.hover ?"234.73px" :"234.16px"} height={item.hover ?"355px" :"301px"}
+            onMouseEnter={() => {
+              item.hover = true
+              setListStock([...listStock])
+
+            }}
+            onMouseLeave={() => {
+              item.hover = false
+              setListStock([...listStock])
+            }}
+          >
+            <div className={item.hover ? `${index === 0 ? "ml-3" : ""} text-stock d-flex align-items-center mt-3` : `${index === 0 ? "ml-3" : ""} text-stock d-flex align-items-center`}>
               <img className="mr-2" src={"/svg/icon-check.svg"} />
               <span >{item.stock_have}</span>
             </div>
-            <div className="d-flex justify-content-center w-100 my-2">
+            <div className="d-flex justify-content-center  mt-2">
               <img className="text-center" src={item.logo} />
+              {item.hover ?
+                <Col lg={2} md={2} sm={2} xs={2} >
+                  <img className="" src={"/svg/icon-stock-hart.svg"} />
+                  <img className="" src={"/svg/icon-stock2.svg"} />
+                </Col>
+                :
+                ""
+
+              }
+
             </div>
-            <div className={`${index === 0 ? "ml-3" : ""} text-review d-flex align-items-center`}>
+            {item.hover ?
+              <Button bg="#FFFFFF" color="#0156FF" border_radius="50px" border=" 2px solid #0156FF" width="160px" height="40px"
+              >
+                <img className="mr-2" src={"/svg/icon-stock.svg"} />
+                <span className="font14">Add To Cart</span>
+              </Button>
+              :
+              ""
+
+            }
+
+            <div className={`${index === 0 ? "ml-3" : ""} text-review d-flex align-items-center mt-2`}>
               <img className="" src={"/svg/star-color.svg"} />
               <img className="" src={"/svg/star-color.svg"} />
               <img className="" src={"/svg/star-color.svg"} />
@@ -253,46 +164,13 @@ function SlideStock({ listStock }) {
   return (
     <>
       <div id="main-slider" className="no-margin">
-        <Carousel controls={true} indicators={true}>
+        <Carousel controls={true} indicators={false}>
           <Carousel.Item>
             <Row className="d-flex justify-content-between">
               {renderStock(listStock)}
             </Row>
           </Carousel.Item>
         </Carousel>
-
-        {/* <div className="parent" onclick="">
-        <a className="" href="#">San Francisco</a>
-          <div className="child bg-six">
-            <a className="texta" href="#">San Francisco</a>
-          </div>
-        </div> */}
-
-        {/* <Col lg={2} md={2} sm={2} xs={2} className={`${index === 0 ? "ml-4" : ""} d-flex justify-content-center`} key={index}
-               
->
-    <SystemRelateCard className="cursor-p py-2 " >
-      <div className="text-stock d-flex align-items-center ">
-        <img className="mr-2" src={"/svg/icon-check.svg"} />
-        <span >{item.stock_have}</span>
-      </div>
-      <div className="d-flex justify-content-center w-100 my-2">
-        <img className="text-center" src={item.logo} />
-      </div>
-      <div className="text-review d-flex align-items-center">
-        <img className="" src={"/svg/star-color.svg"} />
-        <img className="" src={"/svg/star-color.svg"} />
-        <img className="" src={"/svg/star-color.svg"} />
-        <img className="" src={"/svg/star-color.svg"} />
-        <img className="mr-2" src={"/svg/star-no.svg"} />
-        <span >Reviews ({item.review})</span>
-      </div>
-      <span className="text-namebook mt-2">{item.nameBook}</span>
-      <span className="text-discount font12 mt-3">{item.price_discount}</span>
-      <span className="text-normal-price font14 mb-0">{item.normal_price}</span>
-    </SystemRelateCard>
-
-</Col>  */}
 
       </div>
 

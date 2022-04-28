@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Navbar, Form, Container, Dropdown, Row, Col, Carousel } from 'react-bootstrap';
+import {Container, Row, Col, Carousel } from 'react-bootstrap';
 import { Button, Box } from '../components/style/globalStyles'
-import InputSelect from "../components/InputSelect";
-import InputText from "../components/InputText";
+
 
 
 function DetailPay(props) {
     const history = useHistory();
-    console.log("aaaaaaaaa", props.match.params.id);
 
     const dataAmount = [
         {
@@ -23,34 +21,7 @@ function DetailPay(props) {
         },
     ]
 
-    const initialForm = {
-        departmentId: "",
-        departmentName: "",
-        employeeId: "",
-        employeeName: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        remark: "",
-        statusId: "",
-        statusName: "",
-
-        mode: "",
-        idEdit: "",
-
-        limit: 10,
-        page: 1,
-        totalPages: 1,
-        sortDir: "ASC",
-        sortBy: "id",
-        totalElements: 0,
-        numberOfElements: 0,
-    };
-    const [form, setForm] = useState(initialForm);
-
     const [data, setData] = useState({})
-    const [departmentSelectValue, setDepartmentSelectValue] = useState([])
-    const [departmentList, setDepartmentList] = useState([])
 
     useEffect(() => {
         getAmountById(props.match.params.id);
@@ -70,7 +41,7 @@ function DetailPay(props) {
     console.log("data", data);
 
     return (
-        <div className="bg-gray-light ">
+        <div className="">
             <section className="py-5 fixed-footer border-bottom">
                 <Container >
                     <span className="text-normal-price font32 ">ตระกร้าสินค้า</span>
@@ -105,7 +76,8 @@ function DetailPay(props) {
                                     <span className="text-normal-price font16">THB{data.price}</span>
                                 </Col>
                                 <Col lg={2} md={12} sm={12} xs={12} >
-                                    <span className="text-normal-price font16">{data.num}</span>
+                                <input type="number" id="quantity" name="quantity" min="0" className="mr-2"  />
+                                   
                                 </Col>
                                 <Col lg={2} md={12} sm={12} xs={12} >
                                     <span className="text-normal-price font16">THB{data.total}</span>
@@ -146,7 +118,7 @@ function DetailPay(props) {
                                 </div>
                                 <div className='d-flex justify-content-center mt-4'>
                                     <Button bg="#0156FF" color="#FFFFFF" border_radius="50px" className="mr-2" width="313px" height="50px"
-                                    onClick={() => history.push(`/product-detailsut/${data.id}`)}
+                                    onClick={() => history.push(`/payment/${data.id}`)}
                                     >
                                         <span className="font14">ไปชำระเงิน</span>
                                     </Button>
@@ -155,53 +127,26 @@ function DetailPay(props) {
                             </Box>
                         </Col>
                     </Row>
-                    <Col lg={4} md={4} sm={6}>
-                        <InputSelect title='Department'
-                            placeholder='Choose...'
-                            classLabel="bold"
-                            selectValue={departmentSelectValue} optionsList={departmentList}
-                            handleChange={(value) => {
-                                setDepartmentSelectValue(value)
-                                setForm({ ...form, departmentId: value.value, departmentName: value.label })
-                            }}
-                        />
-                    </Col>
-                    <Col lg={4} md={4} sm={6}>
-                        <InputText title="Employee ID" type="text" idName="employeeId"
-                            placeholder="Maximum 30 Characters" classLabel="bold" value={form.employeeId}
-                            handleChange={(value) => {
-                                setForm({ ...form, employeeId: value })
-                            }}
-                        />
-                    </Col>
-
-                    <Col lg={2} md={2} sm={5}>
-                        {/* <Form.Check
-                            className="radioRed"
-                            label="Never end date"
-                            inline type="radio"
-                            name={"never"}
-                            id={"neverEnd"}
-                            value={1}
-                            checked={form.never == 1}
-                            onChange={e => {
-                                setForm({ ...form, never: e.target.value });
-                            }}
-                        /> */}
-                          <Form.Check
-                            label="Never end date"
-                            type="radio"
-                            name={"never"}
-                            id={"neverEnd"}
-                            value={1}
-                            checked={form.never == 1}
-                            onChange={e => {
-                                setForm({ ...form, never: e.target.value });
-                            }}
-                        />
-                    </Col>
                 </Container>
             </section>
+            <style jsx="true" global="true">{`
+                button, input, optgroup, select, textarea {
+                width: 70px;
+                height: 50px;
+                background: #EBEBEB;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                color: #000000;
+                border : 1px solid transparent;
+          }  
+                input[type=number]::-webkit-inner-spin-button,
+                input[type=number]::-webkit-outer-spin-button {
+                    opacity: 1;
+                }   
+
+            `}</style>
         </div>
 
 
